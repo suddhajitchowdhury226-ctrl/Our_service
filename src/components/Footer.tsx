@@ -146,13 +146,13 @@ export function Footer() {
           <p className="text-muted-foreground text-sm">
             © 2024 NovaCraft Studio. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm mt-4 md:mt-0 flex items-center">
+{/*           <p className="text-muted-foreground text-sm mt-4 md:mt-0 flex items-center">
             Built with 
             <span className="mx-1 text-[#5AA8FF]">GSAP</span>
             +
             <span className="mx-1 text-[#B6FF5A]">Three.js</span>
             <span className="ml-2">⚡</span>
-          </p>
+          </p> */}
         </div>
       </div>
 
