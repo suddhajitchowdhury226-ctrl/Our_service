@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+  
+  /* NovaCraft Brand Colors */
+  --charcoal: #0E0E10;
+  --off-white: #F5F6F8;
+  --electric-blue: #5AA8FF;
+  --neon-lime: #B6FF5A;
+  
+  /* Light mode (fallback) */
+  --background: var(--off-white);
+  --foreground: var(--charcoal);
+  --card: var(--off-white);
+  --card-foreground: var(--charcoal);
+  --popover: var(--off-white);
+  --popover-foreground: var(--charcoal);
+  --primary: var(--electric-blue);
+  --primary-foreground: var(--charcoal);
+  --secondary: var(--charcoal);
+  --secondary-foreground: var(--off-white);
+  --muted: rgba(14, 14, 16, 0.05);
+  --muted-foreground: rgba(14, 14, 16, 0.6);
+  --accent: var(--neon-lime);
+  --accent-foreground: var(--charcoal);
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(14, 14, 16, 0.1);
+  --input: transparent;
+  --input-background: rgba(14, 14, 16, 0.03);
+  --switch-background: rgba(14, 14, 16, 0.1);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--electric-blue);
+  --chart-1: var(--electric-blue);
+  --chart-2: var(--neon-lime);
+  --chart-3: var(--charcoal);
+  --chart-4: #8B5CF6;
+  --chart-5: #F59E0B;
+  --radius: 0.75rem;
+  --sidebar: var(--off-white);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--electric-blue);
+  --sidebar-primary-foreground: var(--charcoal);
+  --sidebar-accent: rgba(14, 14, 16, 0.05);
+  --sidebar-accent-foreground: var(--charcoal);
+  --sidebar-border: rgba(14, 14, 16, 0.1);
+  --sidebar-ring: var(--electric-blue);
+}
+
+/* Dark mode - default theme */
+.dark, :root {
+  --background: var(--charcoal);
+  --foreground: var(--off-white);
+  --card: var(--charcoal);
+  --card-foreground: var(--off-white);
+  --popover: var(--charcoal);
+  --popover-foreground: var(--off-white);
+  --primary: var(--electric-blue);
+  --primary-foreground: var(--charcoal);
+  --secondary: rgba(245, 246, 248, 0.1);
+  --secondary-foreground: var(--off-white);
+  --muted: rgba(245, 246, 248, 0.08);
+  --muted-foreground: rgba(245, 246, 248, 0.6);
+  --accent: var(--neon-lime);
+  --accent-foreground: var(--charcoal);
+  --destructive: #dc2626;
+  --destructive-foreground: var(--off-white);
+  --border: rgba(245, 246, 248, 0.1);
+  --input: rgba(245, 246, 248, 0.05);
+  --input-background: rgba(245, 246, 248, 0.03);
+  --switch-background: rgba(245, 246, 248, 0.2);
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: var(--electric-blue);
+  --chart-1: var(--electric-blue);
+  --chart-2: var(--neon-lime);
+  --chart-3: var(--off-white);
+  --chart-4: #8B5CF6;
+  --chart-5: #F59E0B;
+  --radius: 0.75rem;
+  --sidebar: var(--charcoal);
+  --sidebar-foreground: var(--off-white);
+  --sidebar-primary: var(--electric-blue);
+  --sidebar-primary-foreground: var(--charcoal);
+  --sidebar-accent: rgba(245, 246, 248, 0.08);
+  --sidebar-accent-foreground: var(--off-white);
+  --sidebar-border: rgba(245, 246, 248, 0.1);
+  --sidebar-ring: var(--electric-blue);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Typography families */
+  .font-heading {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Smooth animations for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--electric-blue);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-lime);
+  }
+
+  /* Innovative animations */
+  @keyframes grid-move {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+  }
+
+  @keyframes star-twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(5deg); }
+    66% { transform: translateY(5px) rotate(-3deg); }
+  }
+
+  .switching-star {
+    animation: star-twinkle 2s ease-in-out infinite;
+  }
+
+  .floating-element {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Gradient text animation */
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+/**
+ * Base typography with NovaCraft styling
+ */
+@layer base {
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--muted-foreground);
+    }
+
+    label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    button {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    input {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
