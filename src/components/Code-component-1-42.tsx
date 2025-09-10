@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState,  } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from './ui/button';
@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   'Web Development',
-  'App Development', 
+  'App Development',
   'Graphic Design',
   'UI/UX',
   'Product Branding',
@@ -31,9 +31,9 @@ const budgetRanges = [
 ];
 
 export function ContactSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
+  const sectionRef = useRef(null);
+  const titleRef = useRef(null);
+  const formRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -68,7 +68,7 @@ export function ContactSection() {
     // Form animation
     if (formRef.current) {
       const formElements = formRef.current.querySelectorAll('.form-element');
-      
+
       gsap.fromTo(formElements,
         { y: 40, opacity: 0 },
         {
@@ -100,45 +100,41 @@ export function ContactSection() {
     }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    console.log("🚀 handleSubmit called with data:", formData);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    // Confetti animation
-    const confettiContainer = document.createElement('div');
-    confettiContainer.className = 'fixed inset-0 pointer-events-none z-50';
-    document.body.appendChild(confettiContainer);
-
-    for (let i = 0; i < 50; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = 'absolute w-2 h-2 rounded-full';
-      confetti.style.backgroundColor = Math.random() > 0.5 ? '#5AA8FF' : '#B6FF5A';
-      confetti.style.left = Math.random() * 100 + '%';
-      confetti.style.top = '-10px';
-      confettiContainer.appendChild(confetti);
-
-      gsap.to(confetti, {
-        y: window.innerHeight + 100,
-        x: (Math.random() - 0.5) * 200,
-        rotation: Math.random() * 360,
-        duration: 3 + Math.random() * 2,
-        ease: 'power2.out',
-        onComplete: () => confetti.remove()
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.services.join(", "),
+          budget: formData.budget,
+          message: formData.message,
+        }),
       });
-    }
 
-    setTimeout(() => confettiContainer.remove(), 5000);
+      if (!res.ok) throw new Error("Failed to submit form");
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", services: [], budget: "", message: "" });
+    } catch (err) {
+      console.error("❌ Error submitting form:", err);
+      setIsSubmitting(false);
+      alert("Something went wrong, please try again.");
+    }
   };
+
+
 
   if (isSubmitted) {
     return (
-      <section 
+      <section
         ref={sectionRef}
         id="contact"
         className="py-20 lg:py-32 bg-muted/20 relative overflow-hidden"
@@ -168,7 +164,7 @@ export function ContactSection() {
   }
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       id="contact"
       className="py-20 lg:py-32 bg-muted/20 relative overflow-hidden"
@@ -180,7 +176,7 @@ export function ContactSection() {
 
       <div className="container mx-auto px-6 relative">
         <div className="text-center mb-16">
-          <h2 
+          <h2
             ref={titleRef}
             className="font-heading text-4xl md:text-6xl mb-6 text-foreground"
           >
@@ -201,7 +197,9 @@ export function ContactSection() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef}
+                  onSubmit={handleSubmit}
+                  className="space-y-6">
                   {/* Name and Email */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="form-element space-y-2">
@@ -235,11 +233,10 @@ export function ContactSection() {
                         <Badge
                           key={service}
                           variant={formData.services.includes(service) ? "default" : "outline"}
-                          className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
-                            formData.services.includes(service)
-                              ? 'bg-[#5AA8FF] text-background'
-                              : 'border-border hover:border-[#5AA8FF]'
-                          }`}
+                          className={`cursor-pointer transition-all duration-200 hover:scale-105 ${formData.services.includes(service)
+                            ? 'bg-[#5AA8FF] text-background'
+                            : 'border-border hover:border-[#5AA8FF]'
+                            }`}
                           onClick={() => handleServiceToggle(service)}
                         >
                           {service}
@@ -257,11 +254,10 @@ export function ContactSection() {
                           key={range}
                           type="button"
                           onClick={() => setFormData(prev => ({ ...prev, budget: range }))}
-                          className={`p-3 rounded-lg border transition-all duration-200 text-sm ${
-                            formData.budget === range
-                              ? 'bg-[#B6FF5A] text-background border-[#B6FF5A]'
-                              : 'bg-input-background border-border hover:border-[#B6FF5A]'
-                          }`}
+                          className={`p-3 rounded-lg border transition-all duration-200 text-sm ${formData.budget === range
+                            ? 'bg-[#B6FF5A] text-background border-[#B6FF5A]'
+                            : 'bg-input-background border-border hover:border-[#B6FF5A]'
+                            }`}
                         >
                           {range}
                         </button>
@@ -283,26 +279,31 @@ export function ContactSection() {
                   </div>
 
                   {/* Submit Button */}
-                  <div className="form-element">
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-[#5AA8FF] hover:bg-[#4a94e6] text-background font-medium group"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin mr-2"></div>
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          Get a Quote in 24h
-                          <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </>
-                      )}
-                    </Button>
+                  <div className="form-element" onClick={(e) => {
+                    console.log("🚀 Submit button clicked");
+                  }}>
+                    <div className="form-element">
+                      <Button
+                        type="submit"
+                       
+                        className="w-full bg-[#5AA8FF] hover:bg-[#4a94e6] text-background font-medium group"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin mr-2"></div>
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Get a Quote in 24h
+                            <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                          </>
+                        )}
+                      </Button>
+                    </div>
+
                   </div>
+
                 </form>
               </CardContent>
             </Card>
@@ -337,7 +338,7 @@ export function ContactSection() {
                     Average response time
                   </p>
                   <p className="text-2xl font-heading text-[#5AA8FF]">
-                    < 4 hours
+                     4 hours
                   </p>
                   <p className="text-xs text-muted-foreground">
                     We're usually much faster than that

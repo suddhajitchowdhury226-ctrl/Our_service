@@ -279,9 +279,9 @@ export function ProcessSection() {
             <button className="bg-[#5AA8FF] hover:bg-[#4a94e6] text-background px-8 py-3 rounded-lg font-medium transition-colors">
               Get a Free Consultation
             </button>
-            <button className="border border-[#B6FF5A] text-[#B6FF5A] hover:bg-[#B6FF5A] hover:text-background px-8 py-3 rounded-lg font-medium transition-colors">
+            {/* <button className="border border-[#B6FF5A] text-[#B6FF5A] hover:bg-[#B6FF5A] hover:text-background px-8 py-3 rounded-lg font-medium transition-colors">
               View Pricing
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

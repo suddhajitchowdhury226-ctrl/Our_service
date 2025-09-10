@@ -4,13 +4,15 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { 
-  Globe, 
-  Smartphone, 
-  Palette, 
-  Layers, 
-  Target, 
-  Search, 
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+import {
+  Globe,
+  Smartphone,
+  Palette,
+  Layers,
+  Target,
+  Search,
   TrendingUp,
   ArrowRight,
   Star,
@@ -38,7 +40,7 @@ const services = [
   },
   {
     id: 'app',
-    title: 'App Development', 
+    title: 'App Development',
     description: 'Native-feel apps that users love to open.',
     fullDescription: 'iOS/Android apps with smooth UX and offline-first reliability.',
     icon: Smartphone,
@@ -141,10 +143,10 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
     // Floating elements animation
     if (floatingElementsRef.current) {
       const elements = floatingElementsRef.current.querySelectorAll('.floating-service-element');
-      
+
       elements.forEach((element, index) => {
         const el = element as HTMLElement;
-        
+
         gsap.to(el, {
           y: () => `${Math.sin(Date.now() * 0.001 + index) * 30}px`,
           x: () => `${Math.cos(Date.now() * 0.0008 + index) * 20}px`,
@@ -159,7 +161,7 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
 
     // Title animation with enhanced effects
     if (titleRef.current) {
-      gsap.fromTo(titleRef.current, 
+      gsap.fromTo(titleRef.current,
         { y: 100, opacity: 0, rotateX: 45 },
         {
           y: 0,
@@ -200,7 +202,7 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
     // Stats animation
     if (statsRef.current) {
       const statItems = statsRef.current.querySelectorAll('.stat-item');
-      
+
       gsap.fromTo(statItems,
         { y: 60, opacity: 0, scale: 0.8 },
         {
@@ -223,7 +225,7 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
     // Cards animation with sophisticated stagger
     if (cardsRef.current) {
       const cards = cardsRef.current.querySelectorAll('.service-card');
-      
+
       gsap.fromTo(cards,
         { y: 120, opacity: 0, rotateX: 25, scale: 0.9 },
         {
@@ -253,7 +255,7 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
 
         const handleMouseEnter = () => {
           setHoveredService(cardElement.dataset.service || null);
-          
+
           hoverTween = gsap.to(cardElement, {
             y: -15,
             rotateY: 3,
@@ -296,9 +298,9 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
 
         const handleMouseLeave = () => {
           setHoveredService(null);
-          
+
           if (hoverTween) hoverTween.kill();
-          
+
           gsap.to(cardElement, {
             y: 0,
             rotateY: 0,
@@ -368,7 +370,7 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
   }, [selectedService]);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       id="services"
       className="py-20 lg:py-32 bg-background relative overflow-hidden"
@@ -378,9 +380,9 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
         {/* Gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-[#5AA8FF]/10 to-transparent rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-tl from-[#B6FF5A]/10 to-transparent rounded-full blur-3xl"></div>
-        
+
         {/* Grid pattern */}
-        <div 
+        <div
           className="absolute inset-0 opacity-5"
           style={{
             backgroundImage: `
@@ -394,7 +396,7 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
       </div>
 
       {/* Floating Elements */}
-      <div 
+      <div
         ref={floatingElementsRef}
         className="absolute inset-0 pointer-events-none"
       >
@@ -408,7 +410,7 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
       <div className="container mx-auto px-6 relative">
         {/* Enhanced Header */}
         <div className="text-center mb-20">
-          <h2 
+          <h2
             ref={titleRef}
             className="font-heading text-5xl md:text-7xl mb-6 text-foreground relative inline-block"
             style={{
@@ -421,18 +423,18 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
             Our Services
             <div className="absolute inset-0 bg-gradient-to-r from-[#5AA8FF]/20 via-transparent to-[#B6FF5A]/20 blur-2xl -z-10"></div>
           </h2>
-          
+
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Crafting digital experiences that drive growth and captivate audiences
           </p>
         </div>
 
         {/* Stats Section */}
-        <div 
+        <div
           ref={statsRef}
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
+          className="stat-item flex flex-col items-center justify-center text-center group"
         >
-          <div className="stat-item text-center group">
+          {/* <div className="stat-item text-center group">
             <div className="relative">
               <h3 className="font-heading text-3xl md:text-4xl text-[#5AA8FF] mb-2">500+</h3>
               <div className="absolute inset-0 bg-[#5AA8FF]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -452,8 +454,8 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
               <div className="absolute inset-0 bg-[#5AA8FF]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
             <p className="text-sm text-muted-foreground">Countries Served</p>
-          </div>
-          <div className="stat-item text-center group">
+          </div> */}
+          <div className="stat-item text-center group mb-8">
             <div className="relative">
               <h3 className="font-heading text-3xl md:text-4xl text-[#B6FF5A] mb-2">24/7</h3>
               <div className="absolute inset-0 bg-[#B6FF5A]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -463,34 +465,34 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
         </div>
 
         {/* Hero Service Card - Featured */}
-        <div 
+        <div
           ref={heroCardRef}
           className="mb-16"
         >
           {services.filter(s => s.featured).slice(0, 1).map((service) => {
             const IconComponent = service.icon;
             return (
-              <Card 
+              <Card
                 key={service.id}
                 data-service={service.id}
                 className="service-card relative overflow-hidden bg-gradient-to-br from-card/80 to-card/40 backdrop-blur-xl border-2 border-[#B6FF5A]/30 hover:border-[#B6FF5A]/60 transition-all duration-500 group max-w-4xl mx-auto"
               >
                 {/* Card glow effect */}
                 <div className="card-glow absolute inset-0 bg-gradient-to-br from-[#B6FF5A]/10 to-[#5AA8FF]/10 opacity-0 transition-opacity duration-300"></div>
-                
+
                 <div className="relative p-8 md:p-12">
                   <div className="flex flex-col md:flex-row items-center gap-8">
                     <div className="flex-1">
                       <div className="flex items-center gap-4 mb-6">
-                        <div 
+                        <div
                           className="service-icon w-16 h-16 rounded-2xl flex items-center justify-center relative overflow-hidden"
                           style={{ backgroundColor: `${service.color}15` }}
                         >
-                          <IconComponent 
-                            className="w-8 h-8 relative z-10" 
+                          <IconComponent
+                            className="w-8 h-8 relative z-10"
                             style={{ color: service.color }}
                           />
-                          <div 
+                          <div
                             className="absolute inset-0 opacity-20"
                             style={{ backgroundColor: service.color }}
                           ></div>
@@ -499,15 +501,15 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
                           ⭐ Featured
                         </Badge>
                       </div>
-                      
+
                       <CardTitle className="font-heading text-3xl md:text-4xl text-foreground mb-4 group-hover:text-[#B6FF5A] transition-colors">
                         {service.title}
                       </CardTitle>
-                      
+
                       <CardDescription className="text-lg text-muted-foreground mb-6 leading-relaxed">
                         {service.fullDescription}
                       </CardDescription>
-                      
+
                       <div className="flex flex-wrap gap-2 mb-6">
                         {service.tags.map((tag) => (
                           <Badge key={tag} variant="outline" className="text-xs">
@@ -515,16 +517,30 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
                           </Badge>
                         ))}
                       </div>
-                      
-                      <Button 
+                      <Button
                         size="lg"
-                        className="bg-[#B6FF5A] hover:bg-[#B6FF5A]/90 text-background font-medium group/btn"
+                        className="bg-[#B6FF5A] hover:bg-[#B6FF5A]/90 text-background font-medium group/btn cursor-pointer"
+                        onClick={() => {
+                          const contactSection = document.getElementById("contact");
+                          if (contactSection) {
+                            gsap.to(window, {
+                              duration: 0.5,
+                              scrollTo: {
+                                y: contactSection,
+                                offsetY: 100
+                              },
+                              ease: "power2.inOut"
+                            });
+                          }
+                        }}
                       >
                         Get Started
                         <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                       </Button>
+
+
                     </div>
-                    
+
                     <div className="text-center">
                       <div className="bg-gradient-to-br from-background/50 to-background/20 backdrop-blur-sm rounded-2xl p-6 border border-border/50">
                         <div className="text-3xl font-heading text-[#B6FF5A] mb-2">
@@ -546,43 +562,42 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
         </div>
 
         {/* Services Grid - Modern Bento Layout */}
-        <div 
+        <div
           ref={cardsRef}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
         >
           {services.filter(s => !s.featured).map((service, index) => {
             const IconComponent = service.icon;
             const isLarge = index === 0 || index === 3; // Make some cards larger
-            
+
             return (
-              <Card 
+              <Card
                 key={service.id}
                 data-service={service.id}
-                className={`service-card relative overflow-hidden bg-gradient-to-br ${service.gradient} backdrop-blur-xl border border-border/30 hover:border-border/60 transition-all duration-500 group ${
-                  isLarge ? 'md:col-span-2 lg:col-span-1 lg:row-span-2' : ''
-                }`}
+                className={`service-card relative overflow-hidden bg-gradient-to-br ${service.gradient} backdrop-blur-xl border border-border/30 hover:border-border/60 transition-all duration-500 group ${isLarge ? 'md:col-span-2 lg:col-span-1 lg:row-span-2' : ''
+                  }`}
               >
                 {/* Card glow effect */}
                 <div className="card-glow absolute inset-0 bg-gradient-to-br from-current/5 to-transparent opacity-0 transition-opacity duration-300" style={{ color: service.color }}></div>
-                
+
                 <CardHeader className="pb-4 relative">
                   <div className="flex items-center justify-between mb-4">
-                    <div 
+                    <div
                       className="service-icon w-14 h-14 rounded-xl flex items-center justify-center relative overflow-hidden"
                       style={{ backgroundColor: `${service.color}15` }}
                     >
-                      <IconComponent 
-                        className="w-7 h-7 relative z-10" 
+                      <IconComponent
+                        className="w-7 h-7 relative z-10"
                         style={{ color: service.color }}
                       />
-                      <div 
+                      <div
                         className="absolute inset-0 opacity-10"
                         style={{ backgroundColor: service.color }}
                       ></div>
                     </div>
-                    
+
                     <div className="text-right">
-                      <div 
+                      <div
                         className="text-lg font-heading mb-1"
                         style={{ color: service.color }}
                       >
@@ -593,17 +608,17 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
                       </div>
                     </div>
                   </div>
-                  
+
                   <CardTitle className="font-heading text-xl md:text-2xl text-foreground group-hover:text-primary transition-colors mb-2">
                     {service.title}
                   </CardTitle>
                 </CardHeader>
-                
+
                 <CardContent className="pt-0 relative">
                   <CardDescription className="text-muted-foreground mb-4 leading-relaxed">
                     {service.fullDescription}
                   </CardDescription>
-                  
+
                   <div className="flex flex-wrap gap-1 mb-6">
                     {service.tags.map((tag) => (
                       <Badge key={tag} variant="secondary" className="text-xs opacity-70">
@@ -611,17 +626,31 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
                       </Badge>
                     ))}
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-muted-foreground">
                       {service.projects} projects
                     </span>
-                    
-                    <Button 
-                      variant="ghost" 
+
+                    <Button
+                      variant="ghost"
                       size="sm"
-                      className="text-muted-foreground hover:text-foreground transition-colors group/btn p-2"
+                      className="text-muted-foreground hover:text-foreground transition-colors group/btn p-2 cursor-pointer"
+                      onClick={() => {
+                          const contactSection = document.getElementById("contact");
+                          if (contactSection) {
+                            gsap.to(window, {
+                              duration: 0.5,
+                              scrollTo: {
+                                y: contactSection,
+                                offsetY: 100
+                              },
+                              ease: "power2.inOut"
+                            });
+                          }
+                        }}
                     >
+                     Lern-More
                       <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </Button>
                   </div>
@@ -640,23 +669,23 @@ export function ServicesSection({ selectedService }: ServicesSectionProps) {
             <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
               Let's discuss your project and create something extraordinary together. Custom solutions tailored to your unique needs.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
+              <Button
                 size="lg"
                 className="bg-[#5AA8FF] hover:bg-[#5AA8FF]/90 text-background font-medium group"
               >
                 Start Your Project
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              
-              <Button 
+
+              {/* <Button
                 size="lg"
                 variant="outline"
                 className="border-[#B6FF5A] text-[#B6FF5A] hover:bg-[#B6FF5A] hover:text-background font-medium"
               >
                 Schedule a Call
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

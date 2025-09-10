@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from './ui/button';
 import { Menu, X, Star } from 'lucide-react';
+import logo from "../Assets/image-24.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,8 +86,12 @@ export function Navigation() {
             className="flex items-center space-x-3 cursor-pointer group"
             onClick={() => scrollToSection('#main')}
           >
-            <div className="relative w-10 h-10">
-              {/* Rotating stars background */}
+             <img src={logo} alt="" 
+                  className="w-30 h-20 rounded-full object-cover"
+
+                  />
+            {/* <div className="relative w-10 h-0">
+              
               <Star 
                 className="nav-star absolute inset-0 w-10 h-10 text-[#5AA8FF] opacity-40" 
                 style={{ transform: 'rotate(0deg)' }}
@@ -97,19 +102,22 @@ export function Navigation() {
               />
               
               {/* Central NC logo */}
-              <div className="absolute inset-0 flex items-center justify-center">
+
+                 
+
+              {/* <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-lg font-heading font-bold text-foreground group-hover:text-[#5AA8FF] transition-colors">
-                  NC
+                  RX
                 </span>
-              </div>
-            </div>
+              </div> */}
+            {/* </div>  */}
             
-            <div>
+            {/* <div>
               <h1 className="font-heading text-xl font-bold text-foreground group-hover:text-[#5AA8FF] transition-colors">
-                NovaCraft
+                Reach-X
               </h1>
-              <p className="text-xs text-muted-foreground leading-none">Studio</p>
-            </div>
+              <p className="text-xs text-muted-foreground leading-none"></p>
+            </div> */}
           </div>
 
           {/* Desktop Navigation */}

@@ -295,7 +295,7 @@ export function HeroSection({ onServiceSelect, onStartProject, onSeeWork }: Hero
             <div className="absolute inset-0 bg-gradient-to-r from-[#5AA8FF] to-[#B6FF5A] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </Button>
           
-          <Button 
+          {/* <Button 
             onClick={onSeeWork}
             variant="outline"
             size="lg"
@@ -303,7 +303,7 @@ export function HeroSection({ onServiceSelect, onStartProject, onSeeWork }: Hero
           >
             <span className="relative z-10">See Our Work</span>
             <div className="absolute inset-0 bg-[#B6FF5A] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-          </Button>
+          </Button> */}
         </div>
 
         {/* Enhanced stats with innovative design */}
@@ -336,12 +336,12 @@ export function HeroSection({ onServiceSelect, onStartProject, onSeeWork }: Hero
       </div>
 
       {/* Enhanced scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 group">
+      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 group">
         <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center group-hover:border-[#5AA8FF] transition-colors">
           <div className="w-1 h-3 bg-muted-foreground rounded-full mt-2 animate-bounce group-hover:bg-[#5AA8FF] transition-colors"></div>
         </div>
         <p className="text-xs text-muted-foreground mt-2 opacity-0 group-hover:opacity-100 transition-opacity">Scroll</p>
-      </div>
+      </div> */}
     </section>
   );
 }

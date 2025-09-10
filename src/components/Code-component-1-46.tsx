@@ -132,10 +132,10 @@ export function Footer() {
             <div className="mt-8">
               <h5 className="font-medium text-foreground mb-3">Contact</h5>
               <p className="text-muted-foreground text-sm">
-                hello@novacraft.studio
+                helloreachx@gmail.com
               </p>
               <p className="text-muted-foreground text-sm">
-                +1 (555) 123-4567
+                +91 8101700038
               </p>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -14,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   'Web Development',
-  'App Development', 
+  'App Development',
   'Graphic Design',
   'UI/UX',
   'Product Branding',
@@ -68,7 +69,7 @@ export function ContactSection() {
     // Form animation
     if (formRef.current) {
       const formElements = formRef.current.querySelectorAll('.form-element');
-      
+
       gsap.fromTo(formElements,
         { y: 40, opacity: 0 },
         {
@@ -103,12 +104,33 @@ export function ContactSection() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    console.log("🚀 handleSubmit called with data:", formData);
 
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          service: formData.services.join(", "),
+          budget: formData.budget,
+          message: formData.message,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Failed to submit form");
+
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setFormData({ name: "", email: "", services: [], budget: "", message: "" });
+    } catch (err) {
+      console.error("❌ Error submitting form:", err);
+      setIsSubmitting(false);
+      alert("Something went wrong, please try again.");
+    }
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
 
     // Confetti animation
     const confettiContainer = document.createElement('div');
@@ -138,7 +160,7 @@ export function ContactSection() {
 
   if (isSubmitted) {
     return (
-      <section 
+      <section
         ref={sectionRef}
         id="contact"
         className="py-20 lg:py-32 bg-muted/20 relative overflow-hidden"
@@ -168,7 +190,7 @@ export function ContactSection() {
   }
 
   return (
-    <section 
+    <section
       ref={sectionRef}
       id="contact"
       className="py-20 lg:py-32 bg-muted/20 relative overflow-hidden"
@@ -180,7 +202,7 @@ export function ContactSection() {
 
       <div className="container mx-auto px-6 relative">
         <div className="text-center mb-16">
-          <h2 
+          <h2
             ref={titleRef}
             className="font-heading text-4xl md:text-6xl mb-6 text-foreground"
           >
@@ -235,11 +257,10 @@ export function ContactSection() {
                         <Badge
                           key={service}
                           variant={formData.services.includes(service) ? "default" : "outline"}
-                          className={`cursor-pointer transition-all duration-200 hover:scale-105 ${
-                            formData.services.includes(service)
+                          className={`cursor-pointer transition-all duration-200 hover:scale-105 ${formData.services.includes(service)
                               ? 'bg-[#5AA8FF] text-background'
                               : 'border-border hover:border-[#5AA8FF]'
-                          }`}
+                            }`}
                           onClick={() => handleServiceToggle(service)}
                         >
                           {service}
@@ -249,7 +270,7 @@ export function ContactSection() {
                   </div>
 
                   {/* Budget */}
-                  <div className="form-element space-y-3">
+                  {/* <div className="form-element space-y-3">
                     <Label>Budget Range</Label>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                       {budgetRanges.map((range) => (
@@ -257,17 +278,16 @@ export function ContactSection() {
                           key={range}
                           type="button"
                           onClick={() => setFormData(prev => ({ ...prev, budget: range }))}
-                          className={`p-3 rounded-lg border transition-all duration-200 text-sm ${
-                            formData.budget === range
+                          className={`p-3 rounded-lg border transition-all duration-200 text-sm ${formData.budget === range
                               ? 'bg-[#B6FF5A] text-background border-[#B6FF5A]'
                               : 'bg-input-background border-border hover:border-[#B6FF5A]'
-                          }`}
+                            }`}
                         >
                           {range}
                         </button>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Message */}
                   <div className="form-element space-y-2">

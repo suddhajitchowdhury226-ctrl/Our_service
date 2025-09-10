@@ -68,7 +68,7 @@ export function Footer() {
           <div className="footer-element lg:col-span-2">
             <div className="mb-6">
               <h3 className="font-heading text-2xl text-foreground mb-2">
-                NovaCraft Studio
+                Reach-X
               </h3>
               <p className="text-[#5AA8FF] font-medium">
                 "We craft products that move people."
@@ -132,10 +132,10 @@ export function Footer() {
             <div className="mt-8">
               <h5 className="font-medium text-foreground mb-3">Contact</h5>
               <p className="text-muted-foreground text-sm">
-                hello@novacraft.studio
+                helloreachx@gmail.com
               </p>
               <p className="text-muted-foreground text-sm">
-                +1 (555) 123-4567
+                +91 8101700038
               </p>
             </div>
           </div>
@@ -144,7 +144,7 @@ export function Footer() {
         {/* Bottom section */}
         <div className="footer-element border-t border-border mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © 2024 NovaCraft Studio. All rights reserved.
+            © 2024 Reach-X. All rights reserved.
           </p>
 {/*           <p className="text-muted-foreground text-sm mt-4 md:mt-0 flex items-center">
             Built with 

@@ -4,16 +4,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Navigation } from './components/Navigation';
 import { HeroSection } from './components/HeroSection';
 import { ServicesSection } from './components/ServicesSection';
-import { WorkSection } from './components/WorkSection';
+// import { WorkSection } from './components/WorkSection';
 import { ProcessSection } from './components/ProcessSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import Dashboard from './components/ui/Dashboard';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
-  const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -129,7 +130,7 @@ export default function App() {
         
         <ServicesSection selectedService={selectedService} />
         
-        <WorkSection />
+        {/* <WorkSection /> */}
         
         <ProcessSection />
         
@@ -137,6 +138,8 @@ export default function App() {
       </main>
 
       <Footer />
+
+      {/* <Dashboard /> */}
 
       {/* Performance monitoring */}
       <script
